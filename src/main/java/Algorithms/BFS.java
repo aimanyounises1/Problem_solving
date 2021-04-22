@@ -15,14 +15,14 @@ import java.util.concurrent.ArrayBlockingQueue;
 // reminder : now u need to generate all sons and add them to the queue.
 // tomorrow finish the bfs algorithm.
 // use stack to store the path and then print it.
-public class BFS_mat implements Solver {
+public class BFS implements Solver {
     private Queue<NodeM> q;
     private int moves_num;
     private NodeM S_goal;
     private NodeM Start_s;
     private Direction d;
 
-    public BFS_mat(NodeM start, NodeM goal) {
+    public BFS(NodeM start, NodeM goal) {
         this.Start_s = start;
         this.S_goal = goal;
         q = new ArrayBlockingQueue<NodeM>(200000);
@@ -81,14 +81,15 @@ public class BFS_mat implements Solver {
         Stack<NodeM> st = new Stack<NodeM>();
         List<NodeM> list = new LinkedList<NodeM>();
         NodeM m = g;
-        st.add(g);
+        list.add(m);
         while (m.getParent() != null) {
-            System.out.println(m.toString());
             NodeM n = m.getParent();
-            st.add(n);
+            list.add(n);
             m = m.getParent();
         }
-        list.addAll(st);
+        list.add(S_goal);
+        Collections.reverse(list);
+
         return list;
     }
     //[1  2 3 4]

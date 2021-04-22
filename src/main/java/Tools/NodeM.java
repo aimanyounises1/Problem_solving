@@ -58,7 +58,6 @@ public class NodeM {
         if (list.size() == 2) {
             index1 = list.get(1);
         }
-        c = color.White;
         this.parent = other.parent;
        // this.mat = other.mat;
         this.c = other.c;
