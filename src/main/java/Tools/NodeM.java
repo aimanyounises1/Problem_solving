@@ -4,12 +4,13 @@ import javafx.util.Pair;
 import org.w3c.dom.Node;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
 /**
  * @author  younis aiman
- * Colors to know if node is visited or not
+ * Colors to know if node is visited or not in DFID algorithm
  */
 public class NodeM {
     int mat[][];
@@ -21,8 +22,11 @@ public class NodeM {
     private int N;
     private int M;
     private int ID;
+    private int f_n;
     private List<Pair<Integer, Integer>> list = new LinkedList<Pair<Integer, Integer>>();
+
     public NodeM(){}
+
     public NodeM(int[][] mat) {
         this.mat = new int[N = mat.length][M = mat[0].length];
         for (int i = 0; i < N; i++) {
@@ -61,6 +65,7 @@ public class NodeM {
         this.parent = other.parent;
        // this.mat = other.mat;
         this.c = other.c;
+        this.f_n = other.f_n;
     }
 
     public int[][] getMat() {
@@ -93,6 +98,15 @@ public class NodeM {
            s += Arrays.toString(this.mat[i]) + "\n";
        }
        return s;
+    }
+    public HashMap<Integer , Pair<Integer , Integer>> indexes(){
+        HashMap<Integer , Pair<Integer , Integer>> indx = new HashMap<>();
+        for (int i = 0 ; i < this.mat.length ; i++){
+            for (int j = 0 ; j < this.mat[0].length ; j++){
+                indx.put(this.mat[i][j], new Pair<>(i ,j));
+            }
+        }
+        return indx;
     }
 
     public boolean equals(NodeM other) {
@@ -133,6 +147,22 @@ public class NodeM {
 
     public Pair<Integer, Integer> getIndex() {
         return index;
+    }
+
+    public int getF_n() {
+        return f_n;
+    }
+
+    public void setF_n(int f_n) {
+        this.f_n = f_n;
+    }
+
+    public int getN() {
+        return N;
+    }
+
+    public int getM() {
+        return M;
     }
 
     public void setParent(NodeM parent) {
@@ -194,6 +224,8 @@ public class NodeM {
             if (list.size() == 2) {
                 k = index1.getKey();
                 c = index1.getValue();
+                System.out.println(k + "," + c);
+                System.out.println(i +"," + j);
                 // if this two indexes is close for each
                 if (Math.abs(k - i) == 1) {
                     if (i  +  1 < this.mat.length) {
@@ -222,7 +254,7 @@ public class NodeM {
                 // if this two indexes is close for each
                 if (Math.abs(k - i) == 1) {
                     if (i - 1 >=  0) {
-                        swap(i, j, i -1 , j);
+                        swap(i, j, i - 1 , j);
                         swap(k, c, k -  1 , c);
                         index1 = new Pair<Integer, Integer>(i - 1 , j);
                         index = new Pair<Integer, Integer>(k - 1 , c);
@@ -245,7 +277,7 @@ public class NodeM {
                 // if this two indexes is close for each
                 if (Math.abs(k - i) == 1) {
                     //check of each one of them is in range of the array's rows
-                    if (j + 1 < this.mat.length && c + 1 < this.mat.length) {
+                    if (j + 2 < this.mat.length && c + 2 < this.mat.length) {
                         swap(i, j, i, j + 2);
                         swap(k, c, k, c + 2);
                         index1 = new Pair<Integer, Integer>(i, j + 2);
