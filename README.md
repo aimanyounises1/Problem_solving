@@ -1,5 +1,7 @@
 # Problem_solving
 # 8-tile puzzle project with AI's algorithms :
+### Description :
+Our goal is to find the cheapest path from start state to the goal state. (the figure bellow explain that).
 - BFS
 - DFID
 - A*
