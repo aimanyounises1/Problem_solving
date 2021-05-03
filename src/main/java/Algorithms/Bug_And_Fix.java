@@ -62,21 +62,6 @@ public class Bug_And_Fix {
         //  for (NodeM m : path) {
         //    System.out.println(m.toString());
         //}
-        NodeM s_ss = new NodeM(s_sate, Direction.Left);
-        System.out.println(s_ss);
-        System.out.println(s_sate);
-        for (int i = 0; i < g_state.getN(); i++) {
-            for (int j = 0; j < g_state.getM(); j++) {
-                System.out.println(s_ss.indexes().get(g_state.getMat()[i][j]));
-                Pair p = s_ss.indexes().get(s_sate.getMat()[i][j]);
-                if (i == (int) p.getKey() && j == (int) p.getValue()) {
-                    System.out.println(s_sate.getMat()[i][j]);
-                } else {
-                    System.out.println("No match");
-                }
-
-            }
-        }
         A_star a = new A_star(g_state, s_sate);
         List<NodeM> path = a.solve();
         if (path != null) {

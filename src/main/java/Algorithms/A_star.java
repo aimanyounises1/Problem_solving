@@ -47,28 +47,27 @@ public class A_star implements Solver {
             NodeM current_state = q.poll();
             if (current_state.equals(goal)){
                 System.out.println("I'm in goal");
-                //System.out.println(current_state.toString());
                 return Path(current_state);
             }
             for (Direction dir : this.d){
                 NodeM sib = new NodeM(current_state,dir);
-                //  f(n) =   This section represent g(n)                   this section represent H(n)
-                cost = new Heuristic_manhattan(goal ,sib).getCost() + current_state.getF_n();
-                sib.setF_n(cost);
-                for (NodeM n : q){
-                    System.out.println(n.getF_n());
-                }
+                sib.setParent(current_state);
+                //  H(n)
+                cost = new Heuristic_manhattan(goal ,sib).getCost();
+                // initialize the f(n) to be g(n) + h(n)
+                sib.setF_n(cost + sib.getCost());
+
                 if (!close_list.containsKey(sib.toString()) && !open_list.containsKey(sib.toString())) {
                     q.add(sib);
-                    System.out.println("In Direction");
                     open_list.put(sib.toString(), sib);
 
                     // if we have a current  the sib with min distance so we replace that
                     // so similar to Dijkstra algorithm.
-                }else if(open_list.get(sib.toString()).getF_n() > cost){
+                }else if(open_list.get(sib.toString()).getF_n() > cost + sib.getCost()){
                     // now F(n) is the new weight of this node .
-                        sib.setF_n(cost);
-                        NodeM m = open_list.get(sib);
+                        sib.setF_n(cost + sib.getCost());
+                        sib.setParent(current_state);
+                        NodeM m = open_list.get(sib.toString());
                         q.remove(m);
                         q.add(sib);
                         open_list.remove(m.toString() , m);

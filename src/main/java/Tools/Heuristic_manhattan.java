@@ -30,7 +30,6 @@ public class Heuristic_manhattan {
                     dx = (int) Math.pow(i - value_key , 2);
                     dy = (int) Math.pow(j - value_v ,2);
                     cost += (int)Math.sqrt(dx+dy);
-                    System.out.println("Cost value is = " + cost);
               }
             }
         }

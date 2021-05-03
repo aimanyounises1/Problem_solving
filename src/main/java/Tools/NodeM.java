@@ -173,6 +173,11 @@ public class NodeM {
         this.index = index;
     }
 
+    public int getCost(){
+        return cost;
+    }
+
+
     public void new_state(Direction direction) {
         int i = index.getKey();
         int j = index.getValue();
