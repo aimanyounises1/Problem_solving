@@ -1,11 +1,12 @@
 package Algorithms;
 
+import Tools.Heuristic_manhattan;
 import Tools.Heuristic_manhattan_comparator;
 import Tools.NodeM;
 import Tools.Solver;
-import java.util.HashMap;
-import java.util.List;
-import java.util.PriorityQueue;
+import org.w3c.dom.Node;
+
+import java.util.*;
 
 public class A_star implements Solver {
     /**
@@ -27,8 +28,6 @@ public class A_star implements Solver {
         close_list = new HashMap<>();
         d = Direction.values();
     }
-
-
     public A_star(NodeM goal , NodeM start){
         this.goal = goal;
         this.start = start;
@@ -39,9 +38,59 @@ public class A_star implements Solver {
         q = new PriorityQueue<>(heuristic);
     }
 
-
     @Override
     public List<NodeM> solve() {
+        int cost;
+        q.add(start);
+        open_list.put(start.toString() , start);
+        while(!q.isEmpty()){
+            NodeM current_state = q.poll();
+            if (current_state.equals(goal)){
+                System.out.println("I'm in goal");
+                //System.out.println(current_state.toString());
+                return Path(current_state);
+            }
+            for (Direction dir : this.d){
+                NodeM sib = new NodeM(current_state,dir);
+                //  f(n) =   This section represent g(n)                   this section represent H(n)
+                cost = new Heuristic_manhattan(goal ,sib).getCost() + current_state.getF_n();
+                sib.setF_n(cost);
+                for (NodeM n : q){
+                    System.out.println(n.getF_n());
+                }
+                if (!close_list.containsKey(sib.toString()) && !open_list.containsKey(sib.toString())) {
+                    q.add(sib);
+                    System.out.println("In Direction");
+                    open_list.put(sib.toString(), sib);
+
+                    // if we have a current  the sib with min distance so we replace that
+                    // so similar to Dijkstra algorithm.
+                }else if(open_list.get(sib.toString()).getF_n() > cost){
+                    // now F(n) is the new weight of this node .
+                        sib.setF_n(cost);
+                        NodeM m = open_list.get(sib);
+                        q.remove(m);
+                        q.add(sib);
+                        open_list.remove(m.toString() , m);
+                }
+
+            }
+            open_list.remove(current_state);
+        }
         return null;
+    }
+    public List<NodeM> Path(NodeM g){
+        Stack<NodeM> st = new Stack<NodeM>();
+        List<NodeM> list = new LinkedList<NodeM>();
+        NodeM m = g;
+        list.add(m);
+        while (m.getParent() != null) {
+            NodeM n = m.getParent();
+            list.add(n);
+            m = m.getParent();
+        }
+        list.add(goal);
+        Collections.reverse(list);
+        return list;
     }
 }

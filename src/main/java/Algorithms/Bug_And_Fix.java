@@ -2,6 +2,7 @@ package Algorithms;
 
 import Tools.NodeM;
 import javafx.scene.control.skin.TextInputControlSkin;
+import javafx.util.Pair;
 import org.w3c.dom.Node;
 
 import java.util.Arrays;
@@ -22,7 +23,7 @@ public class Bug_And_Fix {
          * 3,5,6
          * 2,_,7
          */
-        int [][] two_zeros = {{1,0,4},{3,5,6},{2,0,7}};
+        int[][] two_zeros = {{1, 0, 4}, {3, 5, 6}, {2, 0, 7}};
         /**
          *
          * 1,2,3
@@ -30,7 +31,7 @@ public class Bug_And_Fix {
          * 7,_,_
          *
          */
-        int[][] two_zeros_out = {{1,2,3},{4,5,6},{7,0,0}};
+        int[][] two_zeros_out = {{1, 2, 3}, {4, 5, 6}, {7, 0, 0}};
         NodeM two = new NodeM(two_zeros);
         NodeM two_goal = new NodeM(two_zeros_out);
         /**
@@ -46,23 +47,42 @@ public class Bug_And_Fix {
         NodeM g_state = new NodeM(s_g);
         NodeM new_s = new NodeM(s_g);
         System.out.println(new_s.equals(g_state));
-        BFS bfs2 = new BFS(two,two_goal);
-        List <NodeM> Path1 = bfs2.solve();
-        if (Path1 != null)
-            for (NodeM state : Path1) {
-                System.out.println(state.toString());
+        //  BFS bfs2 = new BFS(two,two_goal);
+        //List <NodeM> Path1 = bfs2.solve();
+        //if (Path1 != null)
+        //  for (NodeM state : Path1) {
+        //    System.out.println(state.toString());
+        //}
+
+        System.out.println("--------------------- A* -------------------------------");
+
+        // DFID dfid = new DFID(s_sate, g_state,false,false);
+        //List<NodeM> path = dfid.solver();
+        //if (path != null)
+        //  for (NodeM m : path) {
+        //    System.out.println(m.toString());
+        //}
+        NodeM s_ss = new NodeM(s_sate, Direction.Left);
+        System.out.println(s_ss);
+        System.out.println(s_sate);
+        for (int i = 0; i < g_state.getN(); i++) {
+            for (int j = 0; j < g_state.getM(); j++) {
+                System.out.println(s_ss.indexes().get(g_state.getMat()[i][j]));
+                Pair p = s_ss.indexes().get(s_sate.getMat()[i][j]);
+                if (i == (int) p.getKey() && j == (int) p.getValue()) {
+                    System.out.println(s_sate.getMat()[i][j]);
+                } else {
+                    System.out.println("No match");
+                }
+
             }
-
-        System.out.println("--------------------- DFS -------------------------------");
-
-        DFID dfid = new DFID(s_sate, g_state,false,false);
-        List<NodeM> path = dfid.solver();
-        if (path != null)
+        }
+        A_star a = new A_star(g_state, s_sate);
+        List<NodeM> path = a.solve();
+        if (path != null) {
             for (NodeM m : path) {
                 System.out.println(m.toString());
             }
+        }
 
-
-    }
-
-}
+    }}
