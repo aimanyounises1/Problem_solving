@@ -12,7 +12,8 @@ public class Init_file {
     private String algo_name;
     private boolean time;
     private boolean with_open;
-    private int [][] mat;
+    private int [][] mat_start;
+    private int [][] mat_goal;
     private HashSet<String> algo_list;
     /**
      * BFS
@@ -26,7 +27,7 @@ public class Init_file {
      * 1,2,3,4
      * 5,6,7,8
      * 9,10,11,_
-     * @param file
+     * @param
      */
     public Init_file(){
        algo_list = new HashSet<>();
@@ -63,8 +64,37 @@ public class Init_file {
 
                 }else if(line.contains("no open")){
                     with_open = false;
-                }else if(line.contains("x")){
+                }else if(line.contains("x")) {
                     mat_size(line);
+                    int k = this.n;
+                    while (k > 0) {
+                        line = br.readLine();
+                        // split the array into numbers and then convert them
+                        String[] splitter = line.split(",");
+                        // let's check if that is true , now fixed
+                        for (int i = 0; i < this.m; i++) {
+                            if (splitter[i].equals("_")) {
+                                this.mat_start[k][i] = 0;
+                            }
+                            this.mat_start[k][i] = Integer.valueOf(splitter[i]);
+                        }
+                        k--;
+                    }
+                }else {
+                    int j = this.n;
+                    while (j > 0){
+                        line = br.readLine();
+                        String[] splitter = line.split(",");
+                        // let's check if that is true , now fixed
+                        for (int i = 0; i < this.m; i++) {
+                            if (splitter[i].equals("_")) {
+                                this.mat_start[j][i] = 0;
+                            }
+                            this.mat_start[j][i] = Integer.valueOf(splitter[i]);
+                        }
+                        j--;
+                    }
+                    break;
                 }
             }
 
@@ -73,6 +103,7 @@ public class Init_file {
         String[] cut_x = matSize.split("x");
         this.m = Integer.valueOf(cut_x[1]);
         this.n = Integer.valueOf(cut_x[0]);
-        this.mat = new int[n][m];
+        this.mat_start = new int[n][m];
+        this.mat_goal = new int[n][m];
     }
 }
