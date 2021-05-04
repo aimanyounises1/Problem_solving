@@ -42,7 +42,7 @@ public class NodeM {
         if (list.size() == 2) {
             index1 = list.get(1);
         }
-        c = color.White;
+       // c = color.White;
         this.mat = mat;
 
     }
@@ -64,7 +64,7 @@ public class NodeM {
         }
         this.parent = other.parent;
        // this.mat = other.mat;
-        this.c = other.c;
+       // this.c = other.c;
         this.f_n = other.f_n;
     }
 

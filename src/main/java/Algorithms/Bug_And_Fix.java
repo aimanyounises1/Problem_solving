@@ -54,20 +54,28 @@ public class Bug_And_Fix {
         //    System.out.println(state.toString());
         //}
 
-        System.out.println("--------------------- A* -------------------------------");
+        System.out.println("--------------------- IDA* -------------------------------");
 
-        // DFID dfid = new DFID(s_sate, g_state,false,false);
-        //List<NodeM> path = dfid.solver();
+        //  DFID dfid = new DFID(s_sate, g_state,false,false);
+        // List<NodeM> path = dfid.solver();
         //if (path != null)
-        //  for (NodeM m : path) {
-        //    System.out.println(m.toString());
+        //for (NodeM m : path) {
+        //System.out.println(m.toString());
         //}
-        A_star a = new A_star(g_state, s_sate);
-        List<NodeM> path = a.solve();
+        IDA_Star IDA = new IDA_Star(g_state, s_sate);
+
+        //  A_star a = new A_star(g_state, s_sate);
+        //List < NodeM> path = a.solve();
+
+        //for (NodeM m : path) {
+        //  System.out.println(m);
+        //}
+        List<NodeM> path = IDA.solve();
         if (path != null) {
             for (NodeM m : path) {
                 System.out.println(m.toString());
             }
         }
 
-    }}
+    }
+}
