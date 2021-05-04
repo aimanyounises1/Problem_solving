@@ -3,7 +3,7 @@
 ### Description :
 Our goal is to find the cheapest path from start state to the goal state. (the figure bellow explain that).
 - BFS
-Here we will use breadth first search to find the optimal path.
+We can perform a Breadth-first search on the state space tree. This always finds a goal state nearest to the root. But no matter what the initial state is, the algorithm attempts the same sequence of moves like DFS.
 - DFID
 Here we are implemented a combination between DFS and BFS , this algorithm will find the optimal path because he simulates the bfs algorithm on each level.
 - A*
