@@ -1,4 +1,6 @@
 # Problem_solving
+### Motivation
+![](https://github.com/aimanyounises1/Problem_solving/blob/master/tile_puzzle.jpg)
 # 8-tile puzzle project with AI's algorithms :
 ### Description :
 Our goal is to find the cheapest path from start state to the goal state. (the figure bellow explain that).
