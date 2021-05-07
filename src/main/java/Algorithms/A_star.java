@@ -53,19 +53,18 @@ public class A_star implements Solver {
                 NodeM sib = new NodeM(current_state,dir);
                 sib.setParent(current_state);
                 //  H(n)
-                cost = new Heuristic_manhattan(goal ,sib).getCost();
+                cost = new Heuristic_manhattan(goal ,sib).getCost() + sib.getCost() + sib.getF_n();
                 // initialize the f(n) to be g(n) + h(n)
-                sib.setF_n(cost + sib.getCost());
-
+                sib.setF_n(cost);
                 if (!close_list.containsKey(sib.toString()) && !open_list.containsKey(sib.toString())) {
                     q.add(sib);
                     open_list.put(sib.toString(), sib);
 
                     // if we have a current  the sib with min distance so we replace that
                     // so similar to Dijkstra algorithm.
-                }else if(open_list.get(sib.toString()).getF_n() > cost + sib.getCost()){
+                }else if(open_list.get(sib.toString()).getF_n() > cost){
                     // now F(n) is the new weight of this node .
-                        sib.setF_n(cost + sib.getCost());
+                        sib.setF_n(cost);
                         sib.setParent(current_state);
                         NodeM m = open_list.get(sib.toString());
                         q.remove(m);

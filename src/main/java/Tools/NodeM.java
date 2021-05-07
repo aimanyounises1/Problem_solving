@@ -44,6 +44,7 @@ public class NodeM {
         }
        // c = color.White;
         this.mat = mat;
+        this.cost = 0;
 
     }
 
@@ -65,6 +66,7 @@ public class NodeM {
         this.parent = other.parent;
        // this.mat = other.mat;
        // this.c = other.c;
+        this.cost = other.cost;
         this.f_n = other.f_n;
     }
 
@@ -175,6 +177,9 @@ public class NodeM {
 
     public int getCost(){
         return cost;
+    }
+    public void setCost(int cost){
+        this.cost = cost;
     }
 
 

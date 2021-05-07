@@ -62,19 +62,12 @@ public class Bug_And_Fix {
         //for (NodeM m : path) {
         //System.out.println(m.toString());
         //}
-        IDA_Star IDA = new IDA_Star(g_state, s_sate);
-
-        //  A_star a = new A_star(g_state, s_sate);
-        //List < NodeM> path = a.solve();
-
-        //for (NodeM m : path) {
-        //  System.out.println(m);
-        //}
-        List<NodeM> path = IDA.solve();
-        if (path != null) {
-            for (NodeM m : path) {
-                System.out.println(m.toString());
-            }
+//        IDA_Star IDA = new IDA_Star(g_state, s_sate);
+//
+      A_star a = new A_star(g_state, s_sate);
+        List < NodeM> path = a.solve();
+        for (NodeM m : path) {
+         System.out.println(m);
         }
 
     }

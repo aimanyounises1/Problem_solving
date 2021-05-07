@@ -31,6 +31,7 @@ public class IDA_Star implements Solver {
         // this threshold
         int iteration = 0;
         int t = new Heuristic_manhattan(start, goal).getCost();
+        start.setF_n(t);
         while (t != Integer.MAX_VALUE) {
             int minf = Integer.MAX_VALUE;
             iteration ++;
@@ -39,10 +40,8 @@ public class IDA_Star implements Solver {
             loop_avoidance.put(start.toString(), start);
             while (!st.isEmpty()) {
                 NodeM m = st.pop();
-              //  m.setC(color.White);
                 // black means marked as out
                 if (m.getC() == color.Black) {
-                    System.out.println("In black");
                     loop_avoidance.remove(m);
                     continue;
                 }
@@ -51,26 +50,21 @@ public class IDA_Star implements Solver {
                     st.push(m);
                     for (Direction d : Direction.values()) {
                         NodeM sib = new NodeM(m, d);
-                        int cost = new Heuristic_manhattan(goal, sib).getCost() + sib.getCost();
+                        int cost = new Heuristic_manhattan(goal, sib).getCost() + sib.getCost() + sib.getF_n();
                         // set the f(n)
-                        sib.setC(color.White);
                         sib.setF_n(cost);
+                      //  sib.setCost(cost);
                         if (cost > t) {
                             // min between minf and the f(n)
                             minf = Math.min(minf, cost);
-                            System.out.println(minf);
                             continue;
 
                         }
                         if (loop_avoidance.containsKey(sib.toString()) && loop_avoidance.get(sib.toString()).getC() != color.Black) {
                             NodeM to_update = loop_avoidance.get(sib.toString());
-                            System.out.println("Break");
+
                             if (to_update.getF_n() > cost) {
-                                System.out.println("I'm in");
-                                to_update.setC(color.Black);
                                 loop_avoidance.remove(to_update.toString());
-                                System.out.println("removed");
-                                st.remove(to_update);
                             } else {
                                 continue;
                             }
@@ -79,7 +73,6 @@ public class IDA_Star implements Solver {
                             System.out.println("Reached the goal");
                             return Path(m);
                         }
-                        System.out.println("iteration" + iteration);
                         st.push(sib);
                         loop_avoidance.put(sib.toString(), sib);
                     }
