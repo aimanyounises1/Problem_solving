@@ -75,6 +75,8 @@ public class DFBnB implements Solver {
                 List <NodeM> list = new LinkedList<>();
                for (Direction d : Direction.values()){
                    NodeM sib = new NodeM(m,d);
+                   int cost = new Heuristic_manhattan(goal, sib).getCost() + sib.getCost() + sib.getF_n();
+                   sib.setF_n(cost);
                  list.add(sib);
                }
                Collections.sort(list, new Heuristic_manhattan_comparator());
@@ -85,23 +87,34 @@ public class DFBnB implements Solver {
                        continue;
                    }
                    if (loop_avoidance.containsKey(node.toString()) && loop_avoidance.get(node.toString()).getC() == color.Black){
-                        list.remove(i);
+                        list.remove(i--);
                    }
                    if (loop_avoidance.containsKey(node.toString()) && loop_avoidance.get(node.toString()).getC() != color.Black){
                        NodeM g_tag = loop_avoidance.get(i);
                        if (node.getF_n() >= g_tag.getF_n()){
-                            list.remove(i);
+                            list.remove(i--);
                        }else{
-                           st.remove(i);
                            // i will continue tomorrow , I'm tired
+                           g_tag.setC(color.Black);
                            loop_avoidance.remove(g_tag.toString());
+                           st.remove(i);
                        }
                    }
+                   if (node.equals(goal)){
+                       System.out.println("Reached the goal");
+                       t = node.getF_n();
+                       result = node;
+                       list.subList(i , list.size()).clear();
+                   }
                }
-
+               Collections.reverse(list);
+               for (NodeM s : list){
+                   loop_avoidance.put(s.toString() , s);
+                   st.push(s);
+               }
             }
         }
-        return null;
+        return Path(result);
     }
 
 
