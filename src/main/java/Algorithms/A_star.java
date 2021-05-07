@@ -1,10 +1,6 @@
 package Algorithms;
 
-import Tools.Heuristic_manhattan;
-import Tools.Heuristic_manhattan_comparator;
-import Tools.NodeM;
-import Tools.Solver;
-import org.w3c.dom.Node;
+import Tools.*;
 
 import java.util.*;
 
@@ -17,7 +13,7 @@ public class A_star implements Solver {
      */
     private  NodeM goal ;
     private NodeM start ;
-    private Direction [] d;
+    private Direction[] d;
     private HashMap<String, NodeM> close_list;
     private HashMap<String, NodeM> open_list;
     private PriorityQueue<NodeM> q;

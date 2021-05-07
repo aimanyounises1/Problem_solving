@@ -1,10 +1,8 @@
 package Algorithms;
 
+import Tools.Direction;
 import Tools.NodeM;
-import Tools.Solver;
 import Tools.color;
-import javafx.scene.Node;
-import javafx.util.Pair;
 
 import java.util.*;
 

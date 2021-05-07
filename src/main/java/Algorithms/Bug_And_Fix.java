@@ -1,9 +1,7 @@
 package Algorithms;
 
+import Tools.Direction;
 import Tools.NodeM;
-import javafx.scene.control.skin.TextInputControlSkin;
-import javafx.util.Pair;
-import org.w3c.dom.Node;
 
 import java.util.Arrays;
 import java.util.List;

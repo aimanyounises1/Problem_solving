@@ -1,7 +1,5 @@
 package Tools;
-import Algorithms.Direction;
 import javafx.util.Pair;
-import org.w3c.dom.Node;
 
 import java.util.Arrays;
 import java.util.HashMap;
