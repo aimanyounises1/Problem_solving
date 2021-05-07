@@ -58,6 +58,7 @@ public class BFS implements Solver {
                     }
                     if (sib.equals(S_goal)) {
                         System.out.println("I'm in goal state");
+                        System.out.println(sib.getCost());
                         return Path(sib);
                     }
                 }

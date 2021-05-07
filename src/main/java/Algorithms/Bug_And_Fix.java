@@ -45,12 +45,12 @@ public class Bug_And_Fix {
         NodeM g_state = new NodeM(s_g);
         NodeM new_s = new NodeM(s_g);
         System.out.println(new_s.equals(g_state));
-        //  BFS bfs2 = new BFS(two,two_goal);
-        //List <NodeM> Path1 = bfs2.solve();
-        //if (Path1 != null)
-        //  for (NodeM state : Path1) {
-        //    System.out.println(state.toString());
-        //}
+          BFS bfs = new BFS(s_sate,g_state);
+        List <NodeM> Path1 = bfs.solve();
+        if (Path1 != null)
+          for (NodeM state : Path1) {
+            System.out.println(state.toString());
+        }
 
         System.out.println("--------------------- IDA* -------------------------------");
 

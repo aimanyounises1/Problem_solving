@@ -190,7 +190,7 @@ public class NodeM {
             if (j - 1 >= 0) {
                 swap(i, j, i, j - 1);
                 this.index = new Pair<Integer, Integer>(i ,j -1);
-                cost += 4;
+                cost += 5;
                 return;
             }else{
                 return;
@@ -201,7 +201,7 @@ public class NodeM {
             if (j + 1 < this.mat[0].length) {
                 swap(i, j, i, j + 1);
                 this.index = new Pair<Integer, Integer>(i ,j + 1);
-                cost += 4;
+                cost += 5;
                 return;
             }else{
                 return;
@@ -210,7 +210,7 @@ public class NodeM {
         if (direction.equals(Direction.Up)) {
             if (i - 1 >= 0) {
                 swap(i, j, i -1, j);
-                cost += 4;
+                cost += 5;
                 this.index = new Pair<Integer, Integer>(i - 1 ,j);
                 return;
             }else{
@@ -222,7 +222,7 @@ public class NodeM {
                 swap(i, j, i + 1, j);
                 this.index = new Pair<Integer, Integer>(i + 1 ,j);
 
-                cost += 4;
+                cost += 5;
                 return;
             }else{
                 return;
