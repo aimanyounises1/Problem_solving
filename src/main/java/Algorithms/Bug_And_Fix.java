@@ -21,7 +21,7 @@ public class Bug_And_Fix {
          * 3,5,6
          * 2,_,7
          */
-        int[][] two_zeros = {{1, 0, 4}, {3, 5, 6}, {2, 0, 7}};
+        int[][] two_zeros = {{1, 8, 4}, {3, 5, 6}, {2, 0, 7}};
         /**
          *
          * 1,2,3
@@ -29,7 +29,7 @@ public class Bug_And_Fix {
          * 7,_,_
          *
          */
-        int[][] two_zeros_out = {{1, 2, 3}, {4, 5, 6}, {7, 0, 0}};
+        int[][] two_zeros_out = {{1, 2, 3}, {4, 5, 6}, {7, 8, 0}};
         NodeM two = new NodeM(two_zeros);
         NodeM two_goal = new NodeM(two_zeros_out);
         /**
@@ -39,18 +39,18 @@ public class Bug_And_Fix {
          */
         int[][] s_g = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 0}};
         NodeM s_sate = new NodeM(s_s);
-        NodeM ss = new NodeM(s_sate, Direction.Left);
-        // System.out.println(s_sate);
-        // System.out.println(ss);
+//        NodeM ss = new NodeM(s_sate, Direction.Left);
+//        // System.out.println(s_sate);
+//        // System.out.println(ss);
         NodeM g_state = new NodeM(s_g);
-        NodeM new_s = new NodeM(s_g);
-        System.out.println(new_s.equals(g_state));
-          BFS bfs = new BFS(s_sate,g_state);
-        List <NodeM> Path1 = bfs.solve();
+//        NodeM new_s = new NodeM(s_g);
+//        System.out.println(new_s.equals(g_state));
+        BFS bfs = new BFS(two, two_goal);
+        List<NodeM> Path1 = bfs.solve();
         if (Path1 != null)
-          for (NodeM state : Path1) {
-            System.out.println(state.toString());
-        }
+            for (NodeM state : Path1) {
+                System.out.println(state.toString());
+            }
 
         System.out.println("--------------------- IDA* -------------------------------");
 
@@ -67,10 +67,11 @@ public class Bug_And_Fix {
 //        for (NodeM m : path) {
 //         System.out.println(m);
 //        }
-    DFBnB df = new DFBnB(g_state , s_sate);
-        List <NodeM> Path = df.solve();
-        for (NodeM m : Path){
-            System.out.println(m);
-        }
+//    DFBnB df = new DFBnB(g_state , s_sate);
+//        List <NodeM> Path = df.solve();
+//        for (NodeM m : Path){
+//            System.out.println(m);
+//        }
+//    }
     }
 }

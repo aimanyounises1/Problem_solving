@@ -43,7 +43,12 @@ public class BFS implements Solver {
             // for all possible direction
             for (Direction d : d_arr) {
                 // make all possible movies
-                 NodeM sib = new NodeM(current_state ,d);
+                //System.out.println(d.name());
+                NodeM sib = new NodeM(current_state ,d);
+             //   System.out.println("-----------------father-------------");
+               /// System.out.println(current_state.toString());
+                //System.out.println("-----------sib ----------");
+               // System.out.println(sib.toString());
                 sib.setParent(current_state);
                 // check if it's possible first if it's not then it's equal to null
                 if (sib != null) {
@@ -52,8 +57,8 @@ public class BFS implements Solver {
                     // exit !(true true) = false closed = true open false
                     if (!closed_list.containsKey(sib.toString()) && !open_list.containsKey(sib.toString())) {
                         q.add(sib);
-                        System.out.println("In Direction");
-                        System.out.println(sib.toString());
+                        //System.out.println("In Direction");
+                       // System.out.println(sib.toString());
                         open_list.put(sib.toString(), sib);
                     }
                     if (sib.equals(S_goal)) {
