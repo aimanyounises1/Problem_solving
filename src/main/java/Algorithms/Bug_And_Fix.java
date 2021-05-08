@@ -21,7 +21,7 @@ public class Bug_And_Fix {
          * 3,5,6
          * 2,_,7
          */
-        int[][] two_zeros = {{1, 8, 4}, {3, 5, 6}, {2, 0, 7}};
+        int[][] two_zeros = {{1, 0, 4}, {3, 5, 6}, {2, 0, 7}};
         /**
          *
          * 1,2,3
@@ -29,7 +29,7 @@ public class Bug_And_Fix {
          * 7,_,_
          *
          */
-        int[][] two_zeros_out = {{1, 2, 3}, {4, 5, 6}, {7, 8, 0}};
+        int[][] two_zeros_out = {{1, 2, 3}, {4, 5, 6}, {7, 0, 0}};
         NodeM two = new NodeM(two_zeros);
         NodeM two_goal = new NodeM(two_zeros_out);
         /**

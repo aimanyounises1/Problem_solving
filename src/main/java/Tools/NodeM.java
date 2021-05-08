@@ -195,17 +195,11 @@ public class NodeM {
                 if (k == i  && (c == j - 1 || c == j + 1)) {
                     if (i  +  1 < this.mat.length) {
                         cost += 7;
-                        System.out.println("--------- before swap---------");
-                        System.out.println(toString());
                         swap(i, j, i + 1 , j);
                         swap(k, c, k + 1, c);
-                        System.out.println("------------- after swap -----------------");
-                        System.out.println(toString());
                         this.index = new Pair<Integer, Integer>(i + 1, j);
                         this.index1 = new Pair<Integer, Integer>(k + 1, c);
-                        cost += 7;
-                        System.out.println(k + "," + c);
-                        System.out.println(i +"," + j);
+
                         return;
                     }
                 } else {
@@ -229,8 +223,7 @@ public class NodeM {
                         swap(k, c, k -  1 , c);
                         index = new Pair<Integer, Integer>(i - 1 , j);
                         index1 = new Pair<Integer, Integer>(k - 1 , c);
-                        System.out.println(k + "," + c);
-                        System.out.println(i +"," + j);
+
                         return;
                     }
                 } else {
@@ -255,8 +248,7 @@ public class NodeM {
                         swap(k, c, k, c + 1);
                         index = new Pair<Integer, Integer>(i, j + 1);
                         index1 = new Pair<Integer, Integer>(k, c + 1);
-                        System.out.println(k + "," + c);
-                        System.out.println(i +"," + j);
+
                         return;
                     }
                 } else {
@@ -282,8 +274,7 @@ public class NodeM {
                         swap(k, c, k, c - 1);
                         index = new Pair<Integer, Integer>(i, j - 1);
                         index1 = new Pair<Integer, Integer>(k, c - 1);
-                        System.out.println(k + "," + c);
-                        System.out.println(i +"," + j);
+
                         return;
                     }
                 } else {
