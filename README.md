@@ -13,4 +13,4 @@ Here we move on , and define a new family of algorithms which called informed al
 - IDA*
 The iterative algorithm of A* , using a stack and loop avoidance.
 - DFBNB
-![](https://github.com/aimanyounises1/Problem_solving/blob/master/src/out.png)
+<img src ="https://github.com/aimanyounises1/Problem_solving/blob/master/src/out.png" width="600" height="600" />
